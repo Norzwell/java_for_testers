@@ -2,6 +2,7 @@ package ru.stqa.geomety;
 
 import ru.stqa.geomety.figures.Rectangle;
 import ru.stqa.geomety.figures.Square;
+import ru.stqa.geomety.figures.Triangle;
 
 public class Geometry {
     public static void main(String[] args) {
@@ -11,6 +12,8 @@ public class Geometry {
 
         Rectangle.printRectangleArea(3.0, 5.0);
         Rectangle.printRectangleArea(100, 58.4);
+
+        Triangle.printTrianglePerimeter(5, 6, 5);
     }
 
 }

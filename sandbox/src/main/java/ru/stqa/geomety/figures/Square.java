@@ -1,12 +1,6 @@
 package ru.stqa.geomety.figures;
 
-public class Square {
-
-    public double side;
-
-    public Square(double side) {
-        this.side = side;
-    }
+public record Square (double side) {
 
 
     public static void printSquareArea(Square s){
