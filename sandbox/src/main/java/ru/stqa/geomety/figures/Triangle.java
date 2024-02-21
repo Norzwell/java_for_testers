@@ -13,11 +13,12 @@ public class Triangle {
     }
 
     public double perimeter() {
-        return ((this.side_1 + this.side_2 + this.side_3) / 2);
+        return (this.side_1 + this.side_2 + this.side_3);
     }
 
     public double area() {
-        return (Math.sqrt(perimeter() * (perimeter() - this.side_1) * (perimeter() - this.side_2) * (perimeter() - this.side_3)));
+        var halfOfThePerimeter = perimeter()/2;
+        return (Math.sqrt(halfOfThePerimeter * (halfOfThePerimeter - this.side_1) * (halfOfThePerimeter - this.side_2) * (halfOfThePerimeter - this.side_3)));
     }
 }
 
