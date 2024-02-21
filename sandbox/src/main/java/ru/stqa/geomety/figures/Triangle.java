@@ -13,7 +13,7 @@ public class Triangle {
     }
 
     public double perimeter() {
-        return (this.side_1 + this.side_2 + this.side_3);
+        return ((this.side_1 + this.side_2 + this.side_3) / 2);
     }
 
     public double area() {

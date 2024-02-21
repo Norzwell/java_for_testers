@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da4b6197-fd4f-490f-ba08-e380ec64c28a" name="Changes" comment="" />
+    <list default="true" id="da4b6197-fd4f-490f-ba08-e380ec64c28a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/stqa/geomety/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/stqa/geomety/Geometry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/stqa/geomety/figures/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/stqa/geomety/figures/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/stqa/geomety/figures/TriangleTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/stqa/geomety/figures/TriangleTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,29 +42,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Build sandbox.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.SquareTests.canCalculateArea.executor&quot;: &quot;Debug&quot;,
-    &quot;Gradle.SquareTests.canCalculatePerimeter.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.TriangleTests.canCalculateArea.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.TriangleTests.canCalculatePerimeter.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.TriangleTests.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.sandbox [:Geometry.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.sandbox [:Hello.main()].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build sandbox.executor": "Run",
+    "Gradle.SquareTests.canCalculateArea.executor": "Debug",
+    "Gradle.SquareTests.canCalculatePerimeter.executor": "Run",
+    "Gradle.TriangleTests.canCalculateArea.executor": "Run",
+    "Gradle.TriangleTests.canCalculatePerimeter.executor": "Run",
+    "Gradle.TriangleTests.executor": "Run",
+    "Gradle.sandbox [:Geometry.main()].executor": "Run",
+    "Gradle.sandbox [:Hello.main()].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ru.stqa.geomety.figures" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.TriangleTests.canCalculatePerimeter">
+  <component name="RunManager" selected="Application.Geometry">
     <configuration name="Geometry" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.stqa.geomety.Geometry" />
       <module name="sandbox.main" />
@@ -170,10 +176,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.TriangleTests.canCalculatePerimeter" />
         <item itemvalue="Application.Geometry" />
         <item itemvalue="Gradle.TriangleTests" />
         <item itemvalue="Gradle.TriangleTests.canCalculateArea" />
+        <item itemvalue="Gradle.TriangleTests.canCalculatePerimeter" />
         <item itemvalue="Gradle.SquareTests.canCalculateArea" />
       </list>
     </recent_temporary>

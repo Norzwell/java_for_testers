@@ -9,7 +9,7 @@ public class TriangleTests {
     void canCalculatePerimeter() {
         var s = new Triangle(5, 6, 5);
         double result = s.perimeter();
-        Assertions.assertEquals(16, result);
+        Assertions.assertEquals(8, result);
     }
 
     @Test
