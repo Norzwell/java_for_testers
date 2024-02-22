@@ -7,25 +7,40 @@ public class TriangleTests {
 
     @Test
     void canCalculatePerimeter() {
-        var s = new Triangle(5, 6, 5);
+        var s = new Triangle(5, 6, 4);
         double result = s.perimeter();
-        Assertions.assertEquals(16, result);
+        Assertions.assertEquals(15, result);
     }
 
     @Test
     void canCalculateArea() {
-        var s = new Triangle(5, 6, 5);
+        var s = new Triangle(5, 6, 4);
         double result = s.area();
-        Assertions.assertEquals(12, result);
-    }
-
-    /*    @Test
-    void canCalculatePerimeter() {
-        Assertions.assertEquals(8, Triangle.trianglePerimeter(5, 6, 5));
+        Assertions.assertEquals(9.921567416492215, result);
     }
 
     @Test
-    void canCalculateArea() {
-        Assertions.assertEquals(12, Triangle.triangleArea(5, 6, 5));
-    }*/
+    void cannotCreateTriangleWithNegative () {
+        try {
+            new Triangle(-5, -6, 5);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception) {
+            //ОК
+        }
+    }
+
+    @Test
+    void violationOfTheTriangleInequality () {
+        try {
+            new Triangle(4, 25, 6);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception) {
+            //ОК
+        }
+    }
+
+
+
 }
+
+
