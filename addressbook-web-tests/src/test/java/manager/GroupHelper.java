@@ -47,8 +47,6 @@ public class GroupHelper extends HalperBase {
         click(By.name("new"));
     }
 
-
-
     private void removeSelectedGroup() {
         click(By.xpath("(//input[@name=\'delete\'])[2]"));
     }
