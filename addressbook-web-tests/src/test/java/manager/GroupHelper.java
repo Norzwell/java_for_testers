@@ -51,12 +51,6 @@ public class GroupHelper extends HalperBase {
         click(By.xpath("(//input[@name=\'delete\'])[2]"));
     }
 
-    public boolean isGroupPresent() {
-        openGroupsPage();
-        return manager.isElementPresent(By.xpath("//input[@name=\'selected[]\']"));
-    }
-
-
     private void returnToGroupsPage() {
         click(By.linkText("group page"));
     }
@@ -79,4 +73,21 @@ public class GroupHelper extends HalperBase {
         click(By.xpath("//input[@name=\'selected[]\']"));
     }
 
+    public int getCount() {
+        openGroupsPage();
+        return manager.driver.findElements(By.xpath("//input[@name=\'selected[]\']")).size();
+    }
+
+    public void removeAllGroups() {
+        openGroupsPage();
+        selectAllGroups();
+        removeSelectedGroup();
+    }
+
+    private void selectAllGroups() {
+        var checkboxes = manager.driver.findElements(By.xpath("//input[@name=\'selected[]\']"));
+        for (var checkbox : checkboxes) {
+             checkbox.click();
+        }
+    }
 }

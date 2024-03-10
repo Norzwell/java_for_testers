@@ -41,7 +41,7 @@ public class AddressHelper extends HalperBase{
     }
 
     public void deleteAddress() {
-        click(By.xpath("//*[@id=\"content\"]/form[2]/div[2]"));
+        click(By.xpath("//*[@id=\"content\"]/form[2]/div[2]")); //удаление контакта
     }
 
     public boolean thePresenceOfAContactInTheAddressBook() {  //проверка наличия контакта в адресной строке
@@ -49,5 +49,22 @@ public class AddressHelper extends HalperBase{
         return manager.isElementPresent(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[1]"));
     }
 
+    public int getCount() {
+        isAddressPresent();
+        return manager.driver.findElements(By.cssSelector("input[type*=checkbox]")).size();
+        }
+
+    public void removeAllAddresses() {
+        isAddressPresent();
+        selectAllAddresses();
+        deleteAddress();
+    }
+
+    private void selectAllAddresses() {
+        var checkboxes = manager.driver.findElements(By.cssSelector("input[type*=checkbox]"));
+        for (var checkbox : checkboxes) {
+            checkbox.click();
+        }
+    }
 }
 
