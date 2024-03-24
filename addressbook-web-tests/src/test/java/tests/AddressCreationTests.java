@@ -12,18 +12,23 @@ public class AddressCreationTests extends TestBase{
 
     public static List<AddressData> addressProvider() {
         var result = new ArrayList<AddressData>();
-        for (var firstname : List.of("", "firstname")) {
-            for (var lastname : List.of("", "lastname")) {
-                for (var address : List.of("", "address", "")) {
-                    for (var mobile : List.of("", "mobile", "+79001234567")) {
-                        for (var email : List.of("", "email", "Test@test.ru")) {
-                            result.add(new AddressData(firstname, lastname, address, mobile, email));
+        for (var firstname : List.of("test", "firstname")) {
+            for (var lastname : List.of("test", "lastname")) {
+                for (var address : List.of("test", "address")) {
+                    for (var mobile : List.of("mobile", "+79001234567")) {
+                        for (var email : List.of("email", "Test@test.ru")) {
+                            result.add(new AddressData()
+                                    .withFirsName(firstname)
+                                    .withLastName(lastname)
+                                    .withAddress(address)
+                                    .withMobile(mobile)
+                                    .withEmail(email));
                     }
                 }
             }
         }
         for (int i = 0; i < 5; i++) {
-            result.add(new AddressData(randomString(i+5), randomString(i+5), randomString(i+5), randomString(i+5), randomString(i+5)));
+            result.add(new AddressData().withFirsName(randomString(i+5)).withLastName(randomString(i+5)).withAddress(randomString(i+5)).withMobile(randomString(i+10)).withEmail(randomString(i+10)));
             }
         }
         return result;
@@ -42,7 +47,7 @@ public class AddressCreationTests extends TestBase{
 
     public static List<AddressData> negativeAddressProvider() {
         var result = new ArrayList<AddressData>(List.of(
-                new AddressData("firsname'", "", "", "", "")));
+                new AddressData("", "firsname'", "", "", "", "")));
         return result;
     }
     @ParameterizedTest

@@ -2,6 +2,9 @@ package manager;
 import model.AddressData;
 import org.openqa.selenium.By;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddressHelper extends HalperBase{
     public AddressHelper(ApplicationManager manager) {
         super(manager);
@@ -12,9 +15,9 @@ public class AddressHelper extends HalperBase{
         fillAddressForm(address);
         submitAddressCreation();
     }
-    public void removeAddress() { //удаление адреса из списка
+    public void removeAddress(AddressData address) { //удаление адреса из списка
         isAddressPresent();
-        initCheckBoxAddress();
+        initCheckBoxAddress(address);
         deleteAddress();
     }
 
@@ -36,8 +39,8 @@ public class AddressHelper extends HalperBase{
         click(By.cssSelector("#nav > ul > li:nth-child(1) > a"));
     }
 
-    public void initCheckBoxAddress() {  //нажатие чекбокса
-        click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[1]"));
+    public void initCheckBoxAddress(AddressData address) {  //нажатие чекбокса
+        click(By.cssSelector(String.format("input[value='%s']", address.id())));
     }
 
     public void deleteAddress() {
@@ -65,6 +68,19 @@ public class AddressHelper extends HalperBase{
         for (var checkbox : checkboxes) {
             checkbox.click();
         }
+    }
+
+    public List<AddressData> getList() {
+        var address = new ArrayList<AddressData>();
+        var tr = manager.driver.findElements(By.name("entry"));
+        for (var trIndex : tr) {
+            var lastName = trIndex.findElement(By.cssSelector("td:nth-child(2)")).getText();
+            var firstName = trIndex.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            var checkbox = trIndex.findElement(By.cssSelector("input[type=checkbox]"));
+            var id = checkbox.getAttribute("value");
+            address.add(new AddressData().withId(id).withFirsName(firstName).withLastName(lastName));
+        }
+        return address;
     }
 }
 
