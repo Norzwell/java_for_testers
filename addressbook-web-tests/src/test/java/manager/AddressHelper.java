@@ -1,5 +1,6 @@
 package manager;
 import model.AddressData;
+import model.GroupData;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
@@ -14,8 +15,20 @@ public class AddressHelper extends HalperBase{
         openAddNewPage();
         fillAddressForm(address);
         submitAddressCreation();
-
     }
+
+    public void modifyAddress(AddressData address, AddressData modifiedAddress){
+        isAddressPresent();
+        initAddressModification(address);
+        fillAddressForm(modifiedAddress);
+        submitAddressModification();
+        isAddressPresent();
+    }
+
+    private void submitAddressModification() {
+        click(By.xpath("//*[@id=\"content\"]/form[1]/input[21]"));
+    }
+
     public void removeAddress(AddressData address) { //удаление адреса из списка
         isAddressPresent();
         initCheckBoxAddress(address);
@@ -45,6 +58,13 @@ public class AddressHelper extends HalperBase{
         click(By.cssSelector(String.format("input[value='%s']", address.id())));
     }
 
+    private void initAddressModification(AddressData address) { //нажатие чекбокса и нажатие модификации адреса
+        click(By.cssSelector(String.format("input[value='%s']", address.id())));
+        click(By.cssSelector(String.format("a[href=\"edit.php?id=%s\"]", address.id())));
+//        click(By.xpath(String.format("a[href=\"edit.php?id='%s'\"]]", address.id())));
+//        click(By.name("edit"));
+    }
+
     public void deleteAddress() {
         click(By.xpath("//*[@id=\"content\"]/form[2]/div[2]")); //удаление контакта
     }
@@ -71,6 +91,7 @@ public class AddressHelper extends HalperBase{
             checkbox.click();
         }
     }
+
 
     public List<AddressData> getList() {
         var address = new ArrayList<AddressData>();
