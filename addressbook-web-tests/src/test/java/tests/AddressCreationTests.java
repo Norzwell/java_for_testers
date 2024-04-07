@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class AddressCreationTests extends TestBase{
 
@@ -38,11 +39,16 @@ public class AddressCreationTests extends TestBase{
     @ParameterizedTest
     @MethodSource("addressProvider")
     public void canCreateMultipleAddress(AddressData address) {
-        int addressCount = app.address().getCount();
+//        int addressCount = app.address().getCount();
+        var oldAddress = app.address().getList();
+//        var countOldAddress = oldAddress.size();
         app.address().creatingAddress(address);
 
-        int newAddressCount = app.address().getCount();
-        Assertions.assertEquals(addressCount + 1, newAddressCount);
+        var newAddressCount = app.address().getList();
+//        var countNewAddress = newAddressCount.size();
+        var expectedCountNewAddress = new ArrayList<>(oldAddress);
+
+        Assertions.assertEquals(oldAddress, expectedCountNewAddress);
     }
 
     public static List<AddressData> negativeAddressProvider() {
@@ -59,24 +65,4 @@ public class AddressCreationTests extends TestBase{
         int newAddressCount = app.address().getCount();
         Assertions.assertEquals(addressCount, newAddressCount);
     }
-
-/*    @Test
-    public void canCreateAddress() {
-        int addressCount = app.address().getCount();
-        app.address().creatingAddress(new AddressData("Mark", "Fitz", "Russia, Murmansck, Leningradskaya stret, d.000", "+79001234567", "Test@test.ru"));
-        int newAddressCount = app.address().getCount();
-        Assertions.assertEquals(addressCount + 1, newAddressCount);
-    }*/
-
-/*    @Test //пятикратный запуск теста
-    public void canCreateMultipleAddress() {
-        int n = 5;
-        int addressCount = app.address().getCount();
-
-        for (int i = 0; i < n; i++) {
-            app.address().creatingAddress(new AddressData(randomString(i+5), randomString(i+10), "Russia, Murmansck, Leningradskaya stret, d.000", "+79001234567", "Test@test.ru"));
-        }
-        int newAddressCount = app.address().getCount();
-        Assertions.assertEquals(addressCount + n, newAddressCount);
-    }*/
 }

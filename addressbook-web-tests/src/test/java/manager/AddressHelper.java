@@ -14,6 +14,7 @@ public class AddressHelper extends HalperBase{
         openAddNewPage();
         fillAddressForm(address);
         submitAddressCreation();
+
     }
     public void removeAddress(AddressData address) { //удаление адреса из списка
         isAddressPresent();
@@ -26,7 +27,8 @@ public class AddressHelper extends HalperBase{
         }
     private void submitAddressCreation() {  // нажатие кнопки Enter при создании адреса
         click(By.cssSelector("input:nth-child(75)"));
-    }
+        click(By.xpath("//*[@id=\"content\"]/div/i/a[2]"));
+    ;}
     private void fillAddressForm(AddressData addressData) { //заполнение формы
         type(By.name("firstname"), addressData.firstName());
         type(By.name("lastname"), addressData.lastName());
