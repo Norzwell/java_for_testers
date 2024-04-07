@@ -1,6 +1,7 @@
-package tests;
+package ru.stqa.addressbook.tests;
 
-import model.AddressData;
+import ru.stqa.addressbook.common.CommonFunctions;
+import ru.stqa.addressbook.model.AddressData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -72,8 +73,8 @@ public class AddressCreationTests extends TestBase{
     @Test
     void canCreateContactPhoto() {
         var contact = new AddressData()
-                .withFirsName(randomString(10))
-                .withLastName(randomString(10))
+                .withFirsName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
 
                 //выбрать конкретную картинку
 //                .withPhoto("src/test/resources/images/avatar.png");
