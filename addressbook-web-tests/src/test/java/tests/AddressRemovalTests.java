@@ -13,7 +13,7 @@ public class AddressRemovalTests extends TestBase{
     @Test
     public void canRemoveAddress() {
         if (app.address().getCount() == 0) {
-            app.address().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru"));
+            app.address().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru", ""));
         }
         var oldAddress = app.address().getList();
         var rnd = new Random();
@@ -28,7 +28,7 @@ public class AddressRemovalTests extends TestBase{
     @Test
     public void canRemoveAllAddressAtOnce() {
         if (app.address().getCount() == 0) {
-            app.address().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru"));
+            app.address().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru", ""));
         }
         app.address().removeAllAddresses();
         Assertions.assertEquals(1, app.address().getCount());

@@ -1,7 +1,6 @@
 package tests;
 
 import model.AddressData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ public class AddressModificationTests extends TestBase {
         @Test
         void canModifyAddress() {
             if (app.address().getCount() == 0) {
-                app.address().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru"));
+                app.address().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru","" ));
             }
             var oldAddress = app.address().getList();
             var rnd = new Random();

@@ -40,11 +40,13 @@ public class AddressHelper extends HalperBase{
         }
     private void submitAddressCreation() {  // нажатие кнопки Enter при создании адреса
         click(By.cssSelector("input:nth-child(75)"));
-        click(By.xpath("//*[@id=\"content\"]/div/i/a[2]"));
+//        click(By.xpath("//*[@id=\"content\"]/div/i/a[2]"));
+        isAddressPresent();
     ;}
     private void fillAddressForm(AddressData addressData) { //заполнение формы
         type(By.name("firstname"), addressData.firstName());
         type(By.name("lastname"), addressData.lastName());
+        attach(By.name("photo"), addressData.photo());
         type(By.name("address"), addressData.address());
         type(By.name("mobile"), addressData.mobile());
         type(By.name("email"), addressData.email());
