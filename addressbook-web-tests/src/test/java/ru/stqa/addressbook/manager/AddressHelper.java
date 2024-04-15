@@ -25,7 +25,8 @@ public class AddressHelper extends HalperBase{
     }
 
     private void submitAddressModification() {
-        click(By.xpath("//*[@id=\"content\"]/form[1]/input[21]"));
+//        click(By.xpath("//*[@id=\"content\"]/form[1]/input[21]"));
+        click(By.cssSelector("input[name=update]"));
     }
 
     public void removeAddress(AddressData address) { //удаление адреса из списка
@@ -59,11 +60,10 @@ public class AddressHelper extends HalperBase{
         click(By.cssSelector(String.format("input[value='%s']", address.id())));
     }
 
-    private void initAddressModification(AddressData address) { //нажатие чекбокса и нажатие модификации адреса
-        click(By.cssSelector(String.format("input[value='%s']", address.id())));
+     private void initAddressModification(AddressData address) { //нажатие чекбокса и нажатие модификации адреса
+//        click(By.cssSelector(String.format("input[value='%s']", address.id())));
         click(By.cssSelector(String.format("a[href=\"edit.php?id=%s\"]", address.id())));
-//        click(By.xpath(String.format("a[href=\"edit.php?id='%s'\"]]", address.id())));
-//        click(By.name("edit"));
+
     }
 
     public void deleteAddress() {

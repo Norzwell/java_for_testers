@@ -18,7 +18,7 @@ public class AddressModificationTests extends TestBase {
             var oldAddress = app.address().getList();
             var rnd = new Random();
             var index = rnd.nextInt(oldAddress.size());
-            var testData = new AddressData().withLastName("modified name");
+            var testData = new AddressData().withLastName("modified name").withPhoto(randomFile("src/test/resources/images"));
             app.address().modifyAddress(oldAddress.get(index), testData);
             var newGroups = app.address().getList();
             var expectedList = new ArrayList<>(oldAddress);

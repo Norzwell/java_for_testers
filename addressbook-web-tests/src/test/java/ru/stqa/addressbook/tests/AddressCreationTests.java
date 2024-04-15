@@ -19,15 +19,13 @@ public class AddressCreationTests extends TestBase{
                 for (var address : List.of("test", "address")) {
                     for (var mobile : List.of("mobile", "+79001234567")) {
                         for (var email : List.of("email", "Test@test.ru")) {
-                            for (var photo : List.of("src/test/resources/images/avatar.png")) {
                                 result.add(new AddressData()
                                         .withFirsName(firstname)
                                         .withLastName(lastname)
                                         .withAddress(address)
                                         .withMobile(mobile)
                                         .withEmail(email)
-                                        .withPhoto(photo));
-                            }
+                                        .withPhoto(randomFile("src/test/resources/images")));
                     }
                 }
             }
@@ -47,11 +45,9 @@ public class AddressCreationTests extends TestBase{
         var oldAddress = app.address().getList();
 //        var countOldAddress = oldAddress.size();
         app.address().creatingAddress(address);
-
         var newAddressCount = app.address().getList();
 //        var countNewAddress = newAddressCount.size();
         var expectedCountNewAddress = new ArrayList<>(oldAddress);
-
         Assertions.assertEquals(oldAddress, expectedCountNewAddress);
     }
 
