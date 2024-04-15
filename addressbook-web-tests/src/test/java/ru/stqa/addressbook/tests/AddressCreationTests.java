@@ -1,39 +1,48 @@
 package ru.stqa.addressbook.tests;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.stqa.addressbook.common.CommonFunctions;
 import ru.stqa.addressbook.model.AddressData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.stqa.addressbook.model.GroupData;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddressCreationTests extends TestBase{
 
-    public static List<AddressData> addressProvider() {
+    public static List<AddressData> addressProvider() throws IOException {
         var result = new ArrayList<AddressData>();
-        for (var firstname : List.of("test", "firstname")) {
-            for (var lastname : List.of("test", "lastname")) {
-                for (var address : List.of("test", "address")) {
-                    for (var mobile : List.of("mobile", "+79001234567")) {
-                        for (var email : List.of("email", "Test@test.ru")) {
-                                result.add(new AddressData()
-                                        .withFirsName(firstname)
-                                        .withLastName(lastname)
-                                        .withAddress(address)
-                                        .withMobile(mobile)
-                                        .withEmail(email)
-                                        .withPhoto(randomFile("src/test/resources/images")));
-                    }
-                }
-            }
-        }
+//        for (var firstname : List.of("test", "firstname")) {
+//            for (var lastname : List.of("test", "lastname")) {
+//                for (var address : List.of("test", "address")) {
+//                    for (var mobile : List.of("mobile", "+79001234567")) {
+//                        for (var email : List.of("email", "Test@test.ru")) {
+//                                result.add(new AddressData()
+//                                        .withFirsName(firstname)
+//                                        .withLastName(lastname)
+//                                        .withAddress(address)
+//                                        .withMobile(mobile)
+//                                        .withEmail(email)
+//                                        .withPhoto(randomFile("src/test/resources/images")));
+//                    }
+//                }
+//            }
+//        }
+//        Этот блок меняем на чтение данных из файла .json
 //        for (int i = 0; i < 5; i++) {
 //            result.add(new AddressData().withFirsName(randomString(i+5)).withLastName(randomString(i+5)).withAddress(randomString(i+5)).withMobile(randomString(i+10)).withEmail(randomString(i+10)));
 //            }
-        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(new File("address.json"), new TypeReference<List<AddressData>>() {});
+        result.addAll(value);
         return result;
     }
 

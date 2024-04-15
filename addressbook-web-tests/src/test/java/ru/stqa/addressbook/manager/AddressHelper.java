@@ -46,10 +46,10 @@ public class AddressHelper extends HalperBase{
     private void fillAddressForm(AddressData addressData) { //заполнение формы
         type(By.name("firstname"), addressData.firstName());
         type(By.name("lastname"), addressData.lastName());
-        attach(By.name("photo"), addressData.photo());
         type(By.name("address"), addressData.address());
         type(By.name("mobile"), addressData.mobile());
         type(By.name("email"), addressData.email());
+        attach(By.name("photo"), addressData.photo());
     }
 
     public void isAddressPresent() { // открытие home из хедера
