@@ -13,8 +13,10 @@ public class ApplicationManager {
     private LoginHelper session;
     private GroupHelper groups;
     private AddressHelper address;
+    private jdbcHelper jdbc;
 
     private Properties properties;
+
 
     public void init(String browser, Properties properties) {
         this.properties = properties;
@@ -52,6 +54,13 @@ public class ApplicationManager {
             address = new AddressHelper(this);
         }
         return address;
+    }
+
+    public jdbcHelper jdbc() {
+        if (jdbc == null) {
+            jdbc = new jdbcHelper(this);
+        }
+        return jdbc;
     }
 
     public boolean isElementPresent(By locator) {
