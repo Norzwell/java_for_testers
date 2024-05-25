@@ -71,6 +71,7 @@ public class GroupCreationTests extends TestBase {
     }
     @ParameterizedTest
     @MethodSource ("negativeGroupProvider")
+    //При внесении данных напрямую в БД, тест проваливается т.к. группа создается
     public void canNotCreateGroup(GroupData group) {
         var oldGroups = app.groups().getList();
         app.groups().createGroup(group);
