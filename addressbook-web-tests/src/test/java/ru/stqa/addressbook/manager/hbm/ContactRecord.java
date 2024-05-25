@@ -15,13 +15,22 @@ public class ContactRecord {
 
     public String address;
 
+    public String mobile;
+
+    public String email;
+
+//    public String photo;
+
+
     public ContactRecord() {
     }
 
-    public ContactRecord(int id, String firstname, String lastname, String address) {
+    public ContactRecord(int id, String firstname, String lastname, String address, String mobile, String email) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.address = address;
+        this.mobile = mobile;
+        this.email = email;
     }
 }

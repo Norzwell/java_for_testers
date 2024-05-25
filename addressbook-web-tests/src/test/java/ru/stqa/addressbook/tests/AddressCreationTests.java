@@ -51,10 +51,10 @@ public class AddressCreationTests extends TestBase{
     @MethodSource("addressProvider")
     public void canCreateMultipleAddress(AddressData address) {
 //        int addressCount = app.address().getCount();
-        var oldAddress = app.address().getList();
+        var oldAddress = app.hbm().getContactList();
 //        var countOldAddress = oldAddress.size();
         app.address().creatingAddress(address);
-        var newAddressCount = app.address().getList();
+        var newAddressCount = app.hbm().getContactList();
 //        var countNewAddress = newAddressCount.size();
         var expectedCountNewAddress = new ArrayList<>(oldAddress);
         Assertions.assertEquals(oldAddress, expectedCountNewAddress);
@@ -62,16 +62,16 @@ public class AddressCreationTests extends TestBase{
 
     public static List<AddressData> negativeAddressProvider() {
         var result = new ArrayList<AddressData>(List.of(
-                new AddressData("", "firsname'", "", "", "", "", "")));
+                new AddressData("", "firsname'", "", "", "", "", "src/test/resources/images/avatar.png")));
         return result;
     }
     @ParameterizedTest
     @MethodSource ("negativeAddressProvider")
     public void canNotCreateAddress(AddressData address) {
-        int addressCount = app.address().getCount();
+        var addressCount = app.hbm().getContactList();
         app.address().creatingAddress(address);
 
-        int newAddressCount = app.address().getCount();
+        var newAddressCount = app.hbm().getContactList();
         Assertions.assertEquals(addressCount, newAddressCount);
     }
 

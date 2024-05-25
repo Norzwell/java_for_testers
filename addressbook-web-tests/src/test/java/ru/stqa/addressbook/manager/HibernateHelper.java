@@ -45,28 +45,6 @@ public class HibernateHelper extends HalperBase{
         return new GroupRecord(Integer.parseInt(id), data.name(), data.header(), data.footer());
     }
 
-    static List<AddressData> convertContactList(List<ContactRecord> records) {
-        List<AddressData> result = new ArrayList<>();
-        for (var record : records){
-            result.add(convert(record));
-        }
-        return result;
-    }
-
-    private static AddressData convert (ContactRecord record) {
-        return new AddressData().withId("" + record.id)
-                .withFirsName(record.firstname)
-                .withLastName(record.lastname)
-                .withAddress(record.address);
-    }
-
-    private static ContactRecord convert(AddressData data) {
-        var id = data.id();
-        if ("".equals(id)) {
-            id = "0";
-        }
-        return new ContactRecord(Integer.parseInt(id), data.firstName(), data.lastName(), data.address());
-    }
 
 
     public List<GroupData> getGroupList() {
@@ -93,5 +71,52 @@ public class HibernateHelper extends HalperBase{
        return sessionFactory.fromSession(session -> {
            return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
        });
+    }
+
+    // Все для контактов
+
+    static List<AddressData> convertContactList(List<ContactRecord> records) {
+        List<AddressData> result = new ArrayList<>();
+        for (var record : records){
+            result.add(convertContact(record));
+        }
+        return result;
+    }
+
+    private static AddressData convertContact (ContactRecord record) {
+        return new AddressData().withId("" + record.id)
+                .withFirsName(record.firstname)
+                .withLastName(record.lastname)
+                .withAddress(record.address)
+                .withEmail(record.email)
+                .withMobile(record.mobile);
+    }
+
+    private static ContactRecord convert(AddressData data) {
+        var id = data.id();
+        if ("".equals(id)) {
+            id = "0";
+        }
+        return new ContactRecord(Integer.parseInt(id), data.firstName(), data.lastName(), data.address(), data.mobile(), data.email());
+    }
+
+    public List<AddressData> getContactList() {
+        return convertContactList(sessionFactory.fromSession(session -> {
+            return session.createQuery("from ContactRecord", ContactRecord.class).list();
+        }));
+    }
+
+    public long getContatCount() {
+        return sessionFactory.fromSession(session -> {
+            return session.createQuery("select count (*) from ContactRecord", Long.class).getSingleResult();
+        });
+    }
+
+    public void creatingAddress(AddressData addressData) {
+            sessionFactory.inSession(session -> {
+                session.getTransaction().begin();
+                session.persist(convert(addressData));
+                session.getTransaction().commit();
+            });
     }
 }
