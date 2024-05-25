@@ -3,7 +3,9 @@ package ru.stqa.addressbook.manager;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
+import ru.stqa.addressbook.manager.hbm.ContactRecord;
 import ru.stqa.addressbook.manager.hbm.GroupRecord;
+import ru.stqa.addressbook.model.AddressData;
 import ru.stqa.addressbook.model.GroupData;
 
 import java.util.ArrayList;
@@ -15,9 +17,9 @@ public class HibernateHelper extends HalperBase{
     public HibernateHelper(ApplicationManager manager) {
         super(manager);
         sessionFactory = new Configuration()
-//          .addAnnotatedClass(Book.class)
+            .addAnnotatedClass(ContactRecord.class)
             .addAnnotatedClass(GroupRecord.class)
-            .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:mysql://localhost/addressbook")
+            .setProperty(AvailableSettings.JAKARTA_JDBC_URL, "jdbc:mysql://localhost/addressbook?zeroDateTimeBehavior=convertToNull")
             .setProperty(AvailableSettings.JAKARTA_JDBC_USER, "root")
             .setProperty(AvailableSettings.JAKARTA_JDBC_PASSWORD, "")
             .buildSessionFactory();
@@ -43,6 +45,30 @@ public class HibernateHelper extends HalperBase{
         return new GroupRecord(Integer.parseInt(id), data.name(), data.header(), data.footer());
     }
 
+    static List<AddressData> convertContactList(List<ContactRecord> records) {
+        List<AddressData> result = new ArrayList<>();
+        for (var record : records){
+            result.add(convert(record));
+        }
+        return result;
+    }
+
+    private static AddressData convert (ContactRecord record) {
+        return new AddressData().withId("" + record.id)
+                .withFirsName(record.firstname)
+                .withLastName(record.lastname)
+                .withAddress(record.address);
+    }
+
+    private static ContactRecord convert(AddressData data) {
+        var id = data.id();
+        if ("".equals(id)) {
+            id = "0";
+        }
+        return new ContactRecord(Integer.parseInt(id), data.firstName(), data.lastName(), data.address());
+    }
+
+
     public List<GroupData> getGroupList() {
         return convertList(sessionFactory.fromSession(session -> {
             return session.createQuery("from GroupRecord", GroupRecord.class).list();
@@ -61,5 +87,11 @@ public class HibernateHelper extends HalperBase{
             session.persist(convert(groupData));
             session.getTransaction().commit();
                 });
+    }
+
+    public List<AddressData> getContactsInGroup(GroupData group) {
+       return sessionFactory.fromSession(session -> {
+           return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
+       });
     }
 }

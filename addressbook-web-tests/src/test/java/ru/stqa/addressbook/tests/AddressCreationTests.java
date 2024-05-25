@@ -86,4 +86,21 @@ public class AddressCreationTests extends TestBase{
                 .withPhoto(randomFile("src/test/resources/images"));
         app.address().creatingAddress(contact);
     }
+
+    @Test
+    void canCreateContactInGroup() {
+        var contact = new AddressData()
+                .withFirsName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
+                .withPhoto(randomFile("src/test/resources/images"));
+        if (app.hbm().getGroupCount() == 0) {
+            app.hbm().createGroup(new GroupData("", "Test", "Header", "Footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        app.address().creatingAddressInGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+    }
 }
