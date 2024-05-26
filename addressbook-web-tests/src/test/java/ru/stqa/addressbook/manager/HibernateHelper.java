@@ -1,8 +1,11 @@
 package ru.stqa.addressbook.manager;
 
+import jakarta.persistence.Table;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
+import org.junit.jupiter.api.Test;
+import ru.stqa.addressbook.manager.hbm.Address_in_groups;
 import ru.stqa.addressbook.manager.hbm.ContactRecord;
 import ru.stqa.addressbook.manager.hbm.GroupRecord;
 import ru.stqa.addressbook.model.AddressData;
@@ -73,7 +76,12 @@ public class HibernateHelper extends HalperBase{
        });
     }
 
+
+
+
+
     // Все для контактов
+
 
     static List<AddressData> convertContactList(List<ContactRecord> records) {
         List<AddressData> result = new ArrayList<>();
@@ -119,4 +127,36 @@ public class HibernateHelper extends HalperBase{
                 session.getTransaction().commit();
             });
     }
+
+
+
+    // Все для удлаения таблицы контакта связанного с группой
+
+   /* static List<AddressData> convertAddress_in_groupsList(List<Address_in_groups> records) {
+        List<AddressData> result = new ArrayList<>();
+        for (var record : records){
+            result.add(convertContact(record));
+        }
+        return result;
+    }
+
+    private static Address_in_groups convertAddress_in_groups (Address_in_groups record) {
+        return new Address_in_groups(record.id, record.group_id, record.group_id);
+    }
+
+    private static Address_in_groups convert(Address_in_groups data) {
+        var id = data.id();
+        if ("".equals(id)) {
+            id = "0";
+        }
+        return new Address_in_groups(Integer.parseInt(id), data.domain_id(), data.group_id());
+    }
+
+
+    public long getContatInGroupCount() {
+        return sessionFactory.fromSession(session -> {
+            return session.createQuery("select count (*) from address_in_groups", Long.class).getSingleResult();
+        });
+    }*/
+
 }

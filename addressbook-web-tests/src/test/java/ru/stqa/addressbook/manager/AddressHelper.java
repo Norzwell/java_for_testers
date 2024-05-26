@@ -48,9 +48,27 @@ public class AddressHelper extends HalperBase{
         deleteAddress();
     }
 
+    public void removeAddressInGroup(AddressData address, GroupData group) { //удаление адреса из группы
+        isAddressPresent();
+        selectGroupInHome(group);
+        initCheckBoxAddress(address);
+        removeFromGroup();
+        isAddressPresent();
+    }
+
+    private void removeFromGroup() {
+        click(By.name("remove"));
+    }
+
+    private void selectGroupInHome(GroupData group) {
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
+    }
+
+
     public void openAddNewPage() {
         click(By.xpath("//*[@id='nav']/ul/li[2]/a"));  // нажатие на add new в хедере
         }
+
     private void submitAddressCreation() {  // нажатие кнопки Enter при создании адреса
         click(By.cssSelector("input:nth-child(75)"));
 //        click(By.xpath("//*[@id=\"content\"]/div/i/a[2]"));

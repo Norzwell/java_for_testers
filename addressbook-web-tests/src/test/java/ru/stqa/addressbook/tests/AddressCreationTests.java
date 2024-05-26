@@ -13,6 +13,7 @@ import ru.stqa.addressbook.model.GroupData;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class AddressCreationTests extends TestBase{
@@ -68,10 +69,10 @@ public class AddressCreationTests extends TestBase{
     @ParameterizedTest
     @MethodSource ("negativeAddressProvider")
     public void canNotCreateAddress(AddressData address) {
-        var addressCount = app.hbm().getContactList();
+        var addressCount = app.hbm().getContatCount();
         app.address().creatingAddress(address);
 
-        var newAddressCount = app.hbm().getContactList();
+        var newAddressCount = app.hbm().getContatCount();
         Assertions.assertEquals(addressCount, newAddressCount);
     }
 
