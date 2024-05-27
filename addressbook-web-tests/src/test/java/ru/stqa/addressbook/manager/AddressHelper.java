@@ -25,9 +25,6 @@ public class AddressHelper extends HalperBase{
         submitAddressCreation();
     }
 
-    private void selectGroup(GroupData group) {
-        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
-    }
 
     public void modifyAddress(AddressData address, AddressData modifiedAddress){
         isAddressPresent();
@@ -37,10 +34,6 @@ public class AddressHelper extends HalperBase{
         isAddressPresent();
     }
 
-    private void submitAddressModification() {
-//        click(By.xpath("//*[@id=\"content\"]/form[1]/input[21]"));
-        click(By.cssSelector("input[name=update]"));
-    }
 
     public void removeAddress(AddressData address) { //удаление адреса из списка
         isAddressPresent();
@@ -56,6 +49,22 @@ public class AddressHelper extends HalperBase{
         isAddressPresent();
     }
 
+    public void addressAddInGroup(AddressData address, GroupData group) {  //Создание адреса
+        isAddressPresent();
+        initCheckBoxAddress(address);
+        selectInGroup(group);
+        submitAddTo();
+        isAddressPresent();
+    }
+
+    private void submitAddTo() {
+        click(By.name("add"));
+    }
+
+    private void selectInGroup(GroupData group) {
+        new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
+    }
+
     private void removeFromGroup() {
         click(By.name("remove"));
     }
@@ -64,6 +73,14 @@ public class AddressHelper extends HalperBase{
         new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
     }
 
+    private void selectGroup(GroupData group) {
+        new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
+    }
+
+    private void submitAddressModification() {
+//        click(By.xpath("//*[@id=\"content\"]/form[1]/input[21]"));
+        click(By.cssSelector("input[name=update]"));
+    }
 
     public void openAddNewPage() {
         click(By.xpath("//*[@id='nav']/ul/li[2]/a"));  // нажатие на add new в хедере

@@ -11,6 +11,9 @@ import ru.stqa.addressbook.model.GroupData;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static ru.stqa.addressbook.tests.TestBase.randomFile;
 
@@ -52,31 +55,28 @@ public class Generator {
         }
     }
 
+    private Object generateData (Supplier<Object> dataSupplier) {
+     return Stream.generate(dataSupplier).limit(count).collect(Collectors.toList());
+    }
+
 
     private Object generateGroups() {
-        var result = new ArrayList<GroupData>();
-        for (int i = 0; i < count; i++) {
-            result.add(new GroupData()
-                    .withName(CommonFunctions.randomString(i+10))
-                    .withHeader(CommonFunctions.randomString(i+10))
-                    .withFooter(CommonFunctions.randomString(i+10)));
-        }
-        return result;
+        return generateData(() -> new GroupData()
+                .withName(CommonFunctions.randomString(10))
+                .withHeader(CommonFunctions.randomString(10))
+                .withFooter(CommonFunctions.randomString(10)));
     }
 
     private Object generateAddress() {
-        var result = new ArrayList<AddressData>();
-            for (int i = 0; i < count; i++) {
-                result.add(new AddressData()
-                        .withFirsName(CommonFunctions.randomString(i+5))
-                        .withLastName(CommonFunctions.randomString(i+5))
-                        .withAddress(CommonFunctions.randomString(i+5))
-                        .withMobile(CommonFunctions.randomString(i+10))
-                        .withEmail(CommonFunctions.randomString(i+10))
+        return generateData(() -> new AddressData()
+                .withFirsName(CommonFunctions.randomString(15))
+                .withLastName(CommonFunctions.randomString(15))
+                .withAddress(CommonFunctions.randomString(5))
+                .withMobile(CommonFunctions.randomString(10))
+                .withEmail(CommonFunctions.randomString(10))
 //                        .withPhoto("src/test/resources/images/avatar.png"))
-                        .withPhoto(randomFile("src/test/resources/images")));
-            }
-        return result;
+                .withPhoto(randomFile("src/test/resources/images")));
+
     }
 
 
