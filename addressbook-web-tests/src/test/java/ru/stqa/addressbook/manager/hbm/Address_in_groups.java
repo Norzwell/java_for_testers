@@ -14,15 +14,12 @@ public class Address_in_groups {
     @Id
     public int id;
 
-    public int domain_id;
-
     public Address_in_groups() {
 
     }
 
-    public Address_in_groups(int id, int group_id, int domain_id) {
+    public Address_in_groups(int id, int group_id) {
         this.id = id;
         this.group_id = group_id;
-        this.domain_id = domain_id;
     }
 }

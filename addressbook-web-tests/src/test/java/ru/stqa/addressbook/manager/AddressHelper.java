@@ -12,10 +12,11 @@ public class AddressHelper extends HalperBase{
         super(manager);
     }
 
-    public void creatingAddress(AddressData address) {  //Создание адреса
+    public void creatingAddress(AddressData address) {  //Создание контакта
         openAddNewPage();
         fillAddressForm(address);
         submitAddressCreation();
+        isAddressPresent();
     }
 
     public void creatingAddressInGroup(AddressData address, GroupData group) {  //Создание адреса
@@ -26,6 +27,7 @@ public class AddressHelper extends HalperBase{
     }
 
 
+    // изменение контакта
     public void modifyAddress(AddressData address, AddressData modifiedAddress){
         isAddressPresent();
         initAddressModification(address);
@@ -46,6 +48,8 @@ public class AddressHelper extends HalperBase{
         selectGroupInHome(group);
         initCheckBoxAddress(address);
         removeFromGroup();
+        isAddressPresent();
+        openAddNewPage();
         isAddressPresent();
     }
 
@@ -72,6 +76,7 @@ public class AddressHelper extends HalperBase{
     private void selectGroupInHome(GroupData group) {
         new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
     }
+
 
     private void selectGroup(GroupData group) {
         new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
