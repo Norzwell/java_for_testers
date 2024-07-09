@@ -26,7 +26,7 @@ public class ApplicationManager {
             if ("chrome".equals(browser)) {
                 driver = new ChromeDriver();
             } else if ("firefox".equals(browser)) {
-                    driver = new FirefoxDriver();
+                driver = new FirefoxDriver();
             } else {
                 throw new IllegalArgumentException(String.format("Unknown browser %s", browser));
             }
@@ -41,7 +41,7 @@ public class ApplicationManager {
         if (session == null) {
             session = new LoginHelper(this);
         }
-        return  session;
+        return session;
     }
 
     public GroupHelper groups() {

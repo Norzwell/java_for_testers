@@ -19,6 +19,12 @@ public class ContactRecord {
 
     public String email;
 
+    public String home;
+
+    public String work;
+
+    public String phone2;
+
 //    public String photo;
 
 

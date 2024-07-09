@@ -1,7 +1,5 @@
 package ru.stqa.addressbook.tests;
 
-import org.openqa.selenium.By;
-import ru.stqa.addressbook.common.CommonFunctions;
 import ru.stqa.addressbook.model.AddressData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,14 +8,13 @@ import ru.stqa.addressbook.model.GroupData;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
 public class AddressModificationTests extends TestBase {
 
         @Test
         void canModifyAddress() {
             if (app.hbm().getContatCount() == 0) {
-                app.hbm().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru","" ));
+                app.hbm().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru","", "", "", ""));
             }
             var oldAddress = app.hbm().getContactList();
             var rnd = new Random();
@@ -40,7 +37,7 @@ public class AddressModificationTests extends TestBase {
     void canExclusiveContactAddInGroup() {
 
         if (app.hbm().getContatCount() == 0) {
-            app.hbm().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru", ""));
+            app.hbm().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru", "", "", "", ""));
         }
         if (app.hbm().getGroupCount() == 0) {
             app.hbm().createGroup(new GroupData("", "Test", "Header", "Footer"));

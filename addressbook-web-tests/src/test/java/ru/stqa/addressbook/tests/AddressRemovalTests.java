@@ -15,7 +15,7 @@ public class AddressRemovalTests extends TestBase{
     @Test
     public void canRemoveAddress() {
         if (app.hbm().getContatCount() == 0) {
-            app.hbm().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru","" ));
+            app.hbm().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru","", "", "", ""));
         }
         var oldAddress = app.hbm().getContactList();
         var rnd = new Random();
@@ -30,7 +30,7 @@ public class AddressRemovalTests extends TestBase{
     @Test
     public void canRemoveAllAddressAtOnce() {
         if (app.hbm().getContatCount() == 0) {
-            app.address().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru","src/test/resources/images/avatar.png" ));
+            app.address().creatingAddress(new AddressData("", "Test", "Testovich", "Test, st.Test, h.Test", "+79001234567", "Test@test.ru","src/test/resources/images/avatar.png", "", "", ""));
         }
         app.address().removeAllAddresses();
         Assertions.assertEquals(1, app.address().getCount());

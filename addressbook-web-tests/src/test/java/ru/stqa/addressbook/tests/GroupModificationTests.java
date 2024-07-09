@@ -20,7 +20,7 @@ public class GroupModificationTests extends TestBase {
         var oldGroups = app.hbm().getGroupList();
         var rnd = new Random();
         var index = rnd.nextInt(oldGroups.size());
-        var testData = new GroupData().withName(CommonFunctions.randomString(26));
+        var testData = new GroupData().withName(CommonFunctions.randomString(15));
         app.groups().modifyGroup (oldGroups.get(index), testData);
         var newGroups = app.hbm().getGroupList();
         var expectedList = new ArrayList<>(oldGroups);

@@ -13,7 +13,6 @@ import ru.stqa.addressbook.model.GroupData;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class AddressCreationTests extends TestBase{
@@ -63,7 +62,7 @@ public class AddressCreationTests extends TestBase{
 
     public static List<AddressData> negativeAddressProvider() {
         var result = new ArrayList<AddressData>(List.of(
-                new AddressData("", "firsname'", "", "", "", "", "src/test/resources/images/avatar.png")));
+                new AddressData("", "firsname'", "", "", "", "", "src/test/resources/images/avatar.png", "", "", "")));
         return result;
     }
     @ParameterizedTest

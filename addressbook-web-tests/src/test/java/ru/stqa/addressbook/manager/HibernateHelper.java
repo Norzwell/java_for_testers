@@ -93,7 +93,10 @@ public class HibernateHelper extends HalperBase{
                 .withLastName(record.lastname)
                 .withAddress(record.address)
                 .withEmail(record.email)
-                .withMobile(record.mobile);
+                .withMobile(record.mobile)
+                .withHome(record.home)
+                .withWork(record.work)
+                .withSecondary(record.phone2);
     }
 
     private static ContactRecord convert(AddressData data) {
