@@ -79,12 +79,13 @@ public class HibernateHelper extends HalperBase{
        });
     }
 
+
+    // Все для контактов
+
+
     static List<AddressData> convertContactList(List<ContactRecord> records) {
         return  records.stream().map(HibernateHelper::convertContact).collect(Collectors.toList());
     }
-
-
-    // Все для контактов
 
     private static AddressData convertContact (ContactRecord record) {
         return new AddressData().withId("" + record.id)
@@ -122,79 +123,4 @@ public class HibernateHelper extends HalperBase{
                 session.getTransaction().commit();
             });
     }
-
-    // для таблицы address_in_group
-
-/*    static List<AddressData> convertAddressInGroupList(List<ContactRecord> records) {
-        return  records.stream().map(HibernateHelper::convertContact).collect(Collectors.toList());
-    }
-
-    private static AddressData convertContact (ContactRecord record) {
-        return new AddressData().withId("" + record.id)
-                .withFirsName(record.firstname)
-                .withLastName(record.lastname)
-                .withAddress(record.address)
-                .withEmail(record.email)
-                .withMobile(record.mobile);
-    }
-
-    private static ContactRecord convert(AddressData data) {
-        var id = data.id();
-        if ("".equals(id)) {
-            id = "0";
-        }
-        return new ContactRecord(Integer.parseInt(id), data.firstName(), data.lastName(), data.address(), data.mobile(), data.email());
-    }
-
-    public List<AddressData> getContactList() {
-        return convertContactList(sessionFactory.fromSession(session -> {
-            return session.createQuery("from ContactRecord", ContactRecord.class).list();
-        }));
-    }
-
-    public long getContatCount() {
-        return sessionFactory.fromSession(session -> {
-            return session.createQuery("select count (*) from ContactRecord", Long.class).getSingleResult();
-        });
-    }
-
-    public void creatingAddress(AddressData addressData) {
-        sessionFactory.inSession(session -> {
-            session.getTransaction().begin();
-            session.persist(convert(addressData));
-            session.getTransaction().commit();
-        });
-    }*/
-
-
-
-    // Все для удлаения таблицы контакта связанного с группой
-
-   /* static List<AddressData> convertAddress_in_groupsList(List<Address_in_groups> records) {
-        List<AddressData> result = new ArrayList<>();
-        for (var record : records){
-            result.add(convertContact(record));
-        }
-        return result;
-    }
-
-    private static Address_in_groups convertAddress_in_groups (Address_in_groups record) {
-        return new Address_in_groups(record.id, record.group_id, record.group_id);
-    }
-
-    private static Address_in_groups convert(Address_in_groups data) {
-        var id = data.id();
-        if ("".equals(id)) {
-            id = "0";
-        }
-        return new Address_in_groups(Integer.parseInt(id), data.domain_id(), data.group_id());
-    }
-
-
-    public long getContatInGroupCount() {
-        return sessionFactory.fromSession(session -> {
-            return session.createQuery("select count (*) from address_in_groups", Long.class).getSingleResult();
-        });
-    }*/
-
 }
