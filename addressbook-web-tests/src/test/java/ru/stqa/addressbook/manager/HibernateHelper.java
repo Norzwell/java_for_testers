@@ -93,6 +93,8 @@ public class HibernateHelper extends HalperBase{
                 .withLastName(record.lastname)
                 .withAddress(record.address)
                 .withEmail(record.email)
+                .withEmail2(record.email2)
+                .withEmail3(record.email3)
                 .withMobile(record.mobile)
                 .withHome(record.home)
                 .withWork(record.work)
@@ -104,7 +106,7 @@ public class HibernateHelper extends HalperBase{
         if ("".equals(id)) {
             id = "0";
         }
-        return new ContactRecord(Integer.parseInt(id), data.firstName(), data.lastName(), data.address(), data.mobile(), data.email());
+        return new ContactRecord(Integer.parseInt(id), data.firstName(), data.lastName(), data.address(), data.mobile(), data.email(), data.email2(), data.email3());
     }
 
     public List<AddressData> getContactList() {
