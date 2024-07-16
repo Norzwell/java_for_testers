@@ -1,17 +1,15 @@
 package ru.stqa.mantis.manager;
-
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.util.Properties;
 
 public class ApplicationManager {
     private WebDriver driver;
     private String string;
     private Properties properties;
-    private SessionHalper sessionHalper;
+    private SessionHelper sessionHelper;
     private HttpSessionHelper httpSessionHelper;
     private JamesCliHelper JamesCliHelper;
     private MailHelper mailHelper;
@@ -20,8 +18,6 @@ public class ApplicationManager {
         this.string = browser;
         this.properties = properties;
     }
-
-
 
     public WebDriver driver() {
         if (driver == null) {
@@ -39,11 +35,11 @@ public class ApplicationManager {
         return driver;
     }
 
-    public SessionHalper session() {
-        if (sessionHalper == null) {
-            sessionHalper = new SessionHalper(this);
+    public SessionHelper session() {
+        if (sessionHelper == null) {
+            sessionHelper = new SessionHelper(this);
         }
-        return sessionHalper;
+        return sessionHelper;
     }
 
     public HttpSessionHelper http() {
