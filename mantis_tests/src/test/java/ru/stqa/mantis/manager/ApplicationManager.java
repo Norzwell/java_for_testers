@@ -12,11 +12,15 @@ public class ApplicationManager {
     private String string;
     private Properties properties;
     private SessionHalper sessionHalper;
+    private HttpSessionHelper httpSessionHelper;
+    private JamesCliHelper JamesCliHelper;
+    private MailHelper mailHelper;
 
     public void init(String browser, Properties properties) {
         this.string = browser;
         this.properties = properties;
     }
+
 
 
     public WebDriver driver() {
@@ -40,5 +44,30 @@ public class ApplicationManager {
             sessionHalper = new SessionHalper(this);
         }
         return sessionHalper;
+    }
+
+    public HttpSessionHelper http() {
+        if (httpSessionHelper == null) {
+            httpSessionHelper = new HttpSessionHelper(this);
+        }
+        return httpSessionHelper;
+    }
+
+    public JamesCliHelper jamesCli() {
+        if (JamesCliHelper == null) {
+            JamesCliHelper = new JamesCliHelper(this);
+        }
+        return JamesCliHelper;
+    }
+
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
+    }
+
+    public String property(String name) {
+        return properties.getProperty(name);
     }
 }
