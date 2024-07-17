@@ -23,9 +23,12 @@ public class SessionHelper extends HelperBase{
     }
 
     //регистрация нового пользователя
-    public void logInToTheAccountCreated(String username, String email) {
+    public void logInToTheAccountCreated(String user, String email) {
+//        if(!manager.session().isLoggedIn()) {
+//            manager.session().login(manager.property("web.username"), manager.property("web.password"));
+//        }
         click(By.xpath("//a[@class=\"back-to-login-link pull-left\"]"));
-        type(By.name("username"), username);
+        type(By.name("username"), user);
         type(By.name("email"), email);
         click(By.cssSelector("input[type='submit']"));
         click(By.xpath("//*[@id=\"login-box\"]/div/div/div[4]/a"));
