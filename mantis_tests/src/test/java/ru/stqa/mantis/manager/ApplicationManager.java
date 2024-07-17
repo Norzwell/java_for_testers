@@ -29,7 +29,7 @@ public class ApplicationManager {
                 throw new IllegalArgumentException(String.format("Unknown browser %s", string));
             }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
-            driver.get(properties.getProperty("web.baseurl"));
+            driver.get(properties.getProperty("web.baseUrl"));
             driver.manage().window().setSize(new Dimension(1076, 640));
         };
         return driver;

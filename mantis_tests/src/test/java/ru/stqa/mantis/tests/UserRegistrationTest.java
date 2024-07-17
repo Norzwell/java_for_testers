@@ -29,23 +29,15 @@ public class UserRegistrationTest extends TestBase{
         app.session().logInToTheAccountCreated(username, email);
 
         //ждем письмо на зарегистрированный аккаунт
-        var messages = app.mail().receive(email, password, Duration.ofSeconds(60));
+        var messages = app.mail().receive(email, password, Duration.ofSeconds(30));
         Assertions.assertEquals(1, messages.size());
         System.out.println(messages);
 
         //извлекаем ссылку из письма
-        var text = messages.get(0).content();
-        var pattern = Pattern.compile("http://\\S*");
-        var matcher = pattern.matcher(text);
-        var url = "";
-        if (matcher.find()) {
-            url = text.substring(matcher.start(), matcher.end());
-            //System.out.println(url);
-        }
-        System.out.println(url);
+        var url = app.mail().urlExtraction(messages.toString());
 
         //проходим по ссылке из письма
-        app.session().openPage(url);
+        app.session().openPage(url.toString());
 
         // завершаем регистрацию
         app.session().endOfRegistration(username, password);

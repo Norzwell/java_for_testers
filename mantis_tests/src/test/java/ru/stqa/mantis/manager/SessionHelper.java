@@ -28,6 +28,7 @@ public class SessionHelper extends HelperBase{
         type(By.name("username"), username);
         type(By.name("email"), email);
         click(By.cssSelector("input[type='submit']"));
+        click(By.xpath("//*[@id=\"login-box\"]/div/div/div[4]/a"));
     }
 
     public void openPage(String url) {
