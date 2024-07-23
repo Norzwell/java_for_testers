@@ -62,35 +62,4 @@ public class AddressRemovalTests extends TestBase{
         Assertions.assertEquals(newAddress, expectedList);
     }
 
-
-
-//    @Test
-//    void canRemoveContactInGroup() {
-//            var contact = new AddressData()
-//                    .withFirsName(CommonFunctions.randomString(10))
-//                    .withLastName(CommonFunctions.randomString(10))
-//                    .withPhoto(randomFile("src/test/resources/images"));
-//            if (app.hbm().getGroupCount() == 0) {
-//                app.hbm().createGroup(new GroupData("", "Test", "Header", "Footer"));
-//            }
-//            var group = app.hbm().getGroupList().get(0);
-//
-//            var oldRelated = app.hbm().getContactsInGroup(group);
-//            app.address().creatingAddressInGroup(contact, group);
-//            var newRelated = app.hbm().getContactsInGroup(group);
-//            Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
-//
-//
-//        var groupContact = app.hbm().getGroupList().get(0);
-//        var oldRelatedContact = app.hbm().getContactsInGroup(groupContact);
-//        var rnd = new Random();
-//        var index = rnd.nextInt(oldRelatedContact.size());
-//
-//        app.address().removeAddressInGroup(oldRelatedContact.get(index), groupContact);
-//        var newAddress = app.hbm().getContactsInGroup(groupContact);
-//        var expectedList = new ArrayList<>(oldRelatedContact);
-//        expectedList.remove(index);
-//        Assertions.assertEquals(newAddress, expectedList);
-//    }
-
 }
