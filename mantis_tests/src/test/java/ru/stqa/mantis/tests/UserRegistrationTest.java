@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.mantis.common.CommonFunctions;
 import ru.stqa.mantis.model.DeveloperMailUser;
+import ru.stqa.mantis.model.UserData;
 
 import java.time.Duration;
 import java.util.regex.Pattern;
@@ -69,6 +70,26 @@ public class UserRegistrationTest extends TestBase {
         app.jamesApi().addUser(email, password);
         // заполняем форму создания и отправляем
         app.session().logInToTheAccountCreated(user, email);
+        //ждем письмо на зарегистрированный аккаунт
+        var messages = app.mail().receive(email, password, Duration.ofSeconds(10));
+        //извлекаем ссылку из письма
+        var url = app.mail().urlExtraction(messages.toString());
+        //проходим по ссылке из письма
+        app.session().openPage(url.toString());
+        app.session().endOfRegistration(user, password);
+        app.http().login(user, password);
+        Assertions.assertTrue(app.http().isLoggedIn());
+    }
+
+    @ParameterizedTest
+    @MethodSource("randomUser")
+    void canCreateUserRestApi(String user) {
+
+        var email = String.format("%s@localhost", user);
+        var password = "password";
+        app.jamesApi().addUser(email, password);
+        // заполняем форму создания и отправляем
+        app.rest().createUser(new UserData(user, password, email));
         //ждем письмо на зарегистрированный аккаунт
         var messages = app.mail().receive(email, password, Duration.ofSeconds(10));
         //извлекаем ссылку из письма
